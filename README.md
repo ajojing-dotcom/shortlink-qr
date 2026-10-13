@@ -1,10 +1,10 @@
-# KlikAja — Shortlink & QR
+# KlikAje — Shortlink & QR
 
 Aplikasi shortlink + generator kode QR untuk pemakaian internal. Hanya pemilik yang bisa membuat dan mengelola link (login dengan satu kata sandi). Link pendek dan QR-nya bisa dibuka siapa saja, jadi aman dibagikan ke masyarakat.
 
-> Rencana domain: **klikaja.my.id** (contoh link: `klikaja.my.id/daftar-lomba`). Nama dan domain disimpan di satu file konfigurasi (`config/site.ts`) sehingga mudah diganti. Sebelum domain terpasang, aplikasi tetap jalan di alamat `*.vercel.app`.
+> Rencana domain: **klikaje.my.id** (contoh link: `klikaje.my.id/daftar-lomba`). Nama dan domain disimpan di satu file konfigurasi (`config/site.ts`) sehingga mudah diganti. Sebelum domain terpasang, aplikasi tetap jalan di alamat `*.vercel.app`.
 >
-> Memasang domain: beli `klikaja.my.id` (domain .my.id khusus perorangan WNI, daftar dengan KTP di registrar PANDI), lalu di Vercel buka **Project → Settings → Domains → Add**, dan isi DNS sesuai petunjuk Vercel (record `A` ke `76.76.21.21`, atau ganti nameserver ke Vercel).
+> Memasang domain: beli `klikaje.my.id` (domain .my.id khusus perorangan WNI, daftar dengan KTP di registrar PANDI), lalu di Vercel buka **Project → Settings → Domains → Add**, dan isi DNS sesuai petunjuk Vercel (record `A` ke `76.76.21.21`, atau ganti nameserver ke Vercel).
 
 ## Status
 

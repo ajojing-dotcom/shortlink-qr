@@ -1,4 +1,4 @@
-# Desain — KlikAja
+# Desain — KlikAje
 
 Nuansa **Betawi**: merah ondel-ondel, hijau Betawi, dan kuning emas di atas latar krem, dengan hiasan **gigi balang** (deretan segitiga dari lisplang rumah Betawi) di bawah header dan di atas kartu hasil. Teks memakai logat Betawi yang ringan ("Pendekin, nyok!", "Waduh, linknya kagak ketemu!"), tapi label penting tetap jelas.
 

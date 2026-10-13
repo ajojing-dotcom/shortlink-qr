@@ -1,4 +1,4 @@
-# Spesifikasi — KlikAja
+# Spesifikasi — KlikAje
 
 Semua teks antarmuka berbahasa Indonesia.
 
