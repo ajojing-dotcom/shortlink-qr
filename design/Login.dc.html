@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Masuk Pendek.in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#3B4CF5}a:hover{color:#2733C2}
+input{font:inherit}
+</style>
+</helmet>
+<div style="width: 640px; height: 720px; box-sizing: border-box; background: #F2F3F5; color: #14161A; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.5; display: flex; align-items: center; justify-content: center; padding: 32px">
+  <section aria-labelledby="masuk" style="width: 100%; max-width: 400px; background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px">
+    <span style="width: 44px; height: 44px; border-radius: 12px; background: #3B4CF5; display: flex; align-items: center; justify-content: center">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+    </span>
+    <div>
+      <h1 id="masuk" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em">Masuk ke pendek.in</h1>
+      <p style="margin: 4px 0 0; color: #5B6270">Halaman ini khusus pemilik. Link pendek tetap bisa dibuka siapa saja.</p>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <label for="pw" style="font-weight: 600; font-size: 14px">Kata sandi</label>
+      <input id="pw" type="password" value="password" style="height: 48px; padding: 0 14px; border: 1.5px solid #D3D7DE; border-radius: 11px">
+    </div>
+    <p role="alert" style="margin: 0; padding: 10px 12px; border-radius: 10px; background: #FDECEA; color: #B42318; font-size: 14px">Kata sandi salah. Sisa 4 percobaan sebelum dikunci 15 menit.</p>
+    <a href="Main.dc.html" style="height: 50px; border-radius: 12px; background: #3B4CF5; color: #FFFFFF; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none">Masuk</a>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":640,"height":720}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

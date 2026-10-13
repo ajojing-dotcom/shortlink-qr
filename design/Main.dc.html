@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Dashboard Pendek.in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F2F3F5}
+a{color:#3B4CF5}a:hover{color:#2733C2}
+input{font:inherit}
+</style>
+</helmet>
+<div style="min-height: 100%; background: #F2F3F5; color: #14161A; font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 15px; line-height: 1.5">
+
+  <header style="background: #FFFFFF; border-bottom: 1px solid #E2E5EA">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #14161A">
+        <span style="width: 32px; height: 32px; border-radius: 9px; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+        </span>
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; letter-spacing: -0.02em">pendek.in</span>
+      </a>
+      <nav aria-label="Menu utama" style="display: flex; flex-wrap: wrap; gap: 4px">
+        <a href="Main.dc.html" style="padding: 10px 14px; border-radius: 10px; background: #EEF0FF; color: #2733C2; font-weight: 600; text-decoration: none">Link</a>
+        <a href="QR.dc.html" style="padding: 10px 14px; border-radius: 10px; color: #3F4652; font-weight: 500; text-decoration: none">QR Generator</a>
+        <a href="Login.dc.html" style="padding: 10px 14px; border-radius: 10px; color: #3F4652; font-weight: 500; text-decoration: none">Keluar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main style="max-width: 1200px; margin: 0 auto; padding: 32px; display: flex; flex-direction: column; gap: 28px">
+
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px">
+      <div>
+        <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.15">Link saya</h1>
+        <p style="margin: 4px 0 0; color: #5B6270">Pendekkan URL panjang, bagikan, dan pantau berapa kali diklik.</p>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px">
+
+      <section aria-labelledby="buat" style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 16px">
+        <h2 id="buat" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 21px; font-weight: 700">Buat shortlink</h2>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="url" style="font-weight: 600; font-size: 14px">URL panjang</label>
+          <input id="url" type="url" value="https://docs.google.com/forms/d/e/1FAIpQLSf.../viewform" style="height: 46px; padding: 0 14px; border: 1.5px solid {{accent}}; border-radius: 11px; color: #14161A; background: #FFFFFF; outline: 3px solid #E2E5FF">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <label for="slug" style="font-weight: 600; font-size: 14px">Nama link <span style="font-weight: 400; color: #5B6270">(opsional — kosongkan untuk acak)</span></label>
+          <div style="display: flex; height: 46px; border: 1.5px solid #D3D7DE; border-radius: 11px; overflow: hidden">
+            <span style="display: flex; align-items: center; padding: 0 12px; background: #F2F3F5; color: #5B6270; font-family: 'JetBrains Mono', monospace; font-size: 14px; border-right: 1px solid #E2E5EA">pendek.in/</span>
+            <input id="slug" type="text" value="daftar-lomba" style="flex: 1; min-width: 0; border: 0; padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #14161A; outline: none">
+          </div>
+          <span style="display: flex; align-items: center; gap: 6px; color: #157F3D; font-size: 13px; font-weight: 500">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+            Nama tersedia
+          </span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="judul" style="font-weight: 600; font-size: 14px">Judul</label>
+            <input id="judul" type="text" value="Pendaftaran lomba 17-an" style="height: 46px; padding: 0 14px; border: 1.5px solid #D3D7DE; border-radius: 11px; color: #14161A; min-width: 0">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="exp" style="font-weight: 600; font-size: 14px">Kedaluwarsa</label>
+            <input id="exp" type="text" value="Tidak ada" style="height: 46px; padding: 0 14px; border: 1.5px solid #D3D7DE; border-radius: 11px; color: #5B6270; min-width: 0">
+          </div>
+        </div>
+        <button type="button" style="height: 50px; border: 0; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer">Buat shortlink</button>
+      </section>
+
+      <section aria-labelledby="hasil" style="background: #14161A; color: #FFFFFF; border-radius: 18px; padding: 26px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center">
+        <div style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <h2 id="hasil" style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #B9BFCA">Shortlink siap dibagikan</h2>
+          <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 500; line-height: 1.25; word-break: break-all"><span style="color: #9AA1AD">pendek.in/</span><span style="background: #D9F99D; color: #14161A; padding: 0 6px; border-radius: 6px">daftar-lomba</span></p>
+          <p style="margin: 0; color: #B9BFCA; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">→ docs.google.com/forms/d/e/1FAIpQLSf.../viewform</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <button type="button" style="height: 44px; padding: 0 18px; border: 0; border-radius: 11px; background: #FFFFFF; color: #14161A; font: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg>
+              Salin
+            </button>
+            <a href="QR.dc.html" style="height: 44px; padding: 0 18px; border: 1px solid #3A3F49; border-radius: 11px; color: #FFFFFF; font-weight: 600; display: flex; align-items: center; text-decoration: none">Atur QR</a>
+            <a href="Detail.dc.html" style="height: 44px; padding: 0 18px; border: 1px solid #3A3F49; border-radius: 11px; color: #FFFFFF; font-weight: 600; display: flex; align-items: center; text-decoration: none">Lihat detail</a>
+          </div>
+        </div>
+        <div style="flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 10px">
+          <div style="width: 172px; height: 172px; background: #FFFFFF; border-radius: 14px; padding: 14px; box-sizing: border-box">
+            <div role="img" aria-label="Kode QR untuk pendek.in/daftar-lomba" style="display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); width: 144px; height: 144px">
+              <sc-for list="{{cells}}" as="c" hint-placeholder-count="625"><div style="background: {{c.bg}}"></div></sc-for>
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px">
+            <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #3A3F49; border-radius: 9px; background: transparent; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">PNG</button>
+            <button type="button" style="height: 36px; padding: 0 12px; border: 1px solid #3A3F49; border-radius: 9px; background: transparent; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">SVG</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section aria-labelledby="daftar" style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 18px; overflow: hidden">
+      <div style="padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #E2E5EA">
+        <h2 id="daftar" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 21px; font-weight: 700">Daftar link <span style="font-family: 'Instrument Sans', sans-serif; font-size: 14px; font-weight: 500; color: #5B6270">· 5 link</span></h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <label for="cari" style="display: flex; align-items: center; gap: 8px; height: 42px; padding: 0 12px; border: 1.5px solid #D3D7DE; border-radius: 11px; min-width: 220px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B6270" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input id="cari" type="search" placeholder="Cari judul atau link" style="border: 0; outline: none; flex: 1; min-width: 0; background: transparent">
+          </label>
+          <button type="button" style="height: 42px; padding: 0 14px; border: 1.5px solid #D3D7DE; border-radius: 11px; background: #FFFFFF; font: inherit; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 10l5 5 5-5"/><path d="M5 20h14"/></svg>
+            Ekspor CSV
+          </button>
+        </div>
+      </div>
+      <div style="overflow-x: auto">
+        <table style="width: 100%; min-width: 860px; border-collapse: collapse; font-size: 14px">
+          <thead>
+            <tr style="text-align: left; color: #5B6270; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em">
+              <th style="padding: 12px 24px; font-weight: 600">Link</th>
+              <th style="padding: 12px 12px; font-weight: 600">Tujuan</th>
+              <th style="padding: 12px 12px; font-weight: 600; text-align: right">Klik</th>
+              <th style="padding: 12px 12px; font-weight: 600">Dibuat</th>
+              <th style="padding: 12px 12px; font-weight: 600">Status</th>
+              <th style="padding: 12px 24px; font-weight: 600; text-align: right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+              <tr style="border-top: 1px solid #EDEFF2">
+                <td style="padding: 14px 24px">
+                  <a href="Detail.dc.html" style="display: block; font-weight: 600; color: #14161A; text-decoration: none">{{r.title}}</a>
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #2733C2">pendek.in/{{r.slug}}</span>
+                </td>
+                <td style="padding: 14px 12px; color: #5B6270; max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.target}}</td>
+                <td style="padding: 14px 12px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums">{{r.clicks}}</td>
+                <td style="padding: 14px 12px; color: #5B6270; white-space: nowrap">{{r.date}}</td>
+                <td style="padding: 14px 12px"><span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 600; background: {{r.statusBg}}; color: {{r.statusFg}}"><span style="width: 7px; height: 7px; border-radius: 50%; background: {{r.statusFg}}"></span>{{r.status}}</span></td>
+                <td style="padding: 8px 24px">
+                  <div style="display: flex; justify-content: flex-end; gap: 2px">
+                    <button type="button" aria-label="Salin link" style="width: 38px; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #3F4652; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg></button>
+                    <button type="button" aria-label="Lihat QR" style="width: 38px; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #3F4652; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18v2M18 14h2"/></svg></button>
+                    <button type="button" aria-label="Edit link" style="width: 38px; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #3F4652; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></button>
+                    <button type="button" aria-label="Nonaktifkan atau aktifkan" style="width: 38px; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #3F4652; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v9"/><path d="M6.3 7a8 8 0 1 0 11.4 0"/></svg></button>
+                    <button type="button" aria-label="Hapus link" style="width: 38px; height: 38px; border: 0; border-radius: 9px; background: transparent; color: #B42318; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
+                  </div>
+                </td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#3B4CF5","options":["#3B4CF5","#0F766E","#C2410C","#14161A"]},"$preview":{"width":1280,"height":1320}}'>
+class Component extends DCLogic {
+  qr(fg) {
+    var n = 25, s = 11, out = [];
+    function rnd() { s = (s * 1103515245 + 12345) % 2147483648; return s / 2147483648; }
+    var corners = [[0, 0], [0, n - 7], [n - 7, 0]];
+    for (var r = 0; r < n; r++) {
+      for (var c = 0; c < n; c++) {
+        var on = false, done = false;
+        for (var k = 0; k < 3; k++) {
+          var R = corners[k][0], C = corners[k][1];
+          if (r >= R - 1 && r <= R + 7 && c >= C - 1 && c <= C + 7) {
+            done = true;
+            var a = r - R, b = c - C;
+            if (a >= 0 && a <= 6 && b >= 0 && b <= 6) on = a === 0 || a === 6 || b === 0 || b === 6 || (a >= 2 && a <= 4 && b >= 2 && b <= 4);
+          }
+        }
+        if (!done) on = (r === 6 || c === 6) ? (r + c) % 2 === 0 : rnd() < 0.48;
+        out.push({ bg: on ? fg : 'transparent' });
+      }
+    }
+    return out;
+  }
+  renderVals() {
+    var ok = { statusBg: '#E6F4EA', statusFg: '#157F3D', status: 'Aktif' };
+    var off = { statusBg: '#F1F2F4', statusFg: '#5B6270', status: 'Nonaktif' };
+    var exp = { statusBg: '#FFF4E0', statusFg: '#8A5A00', status: 'Kedaluwarsa' };
+    return {
+      accent: this.props.accent ?? '#3B4CF5',
+      cells: this.qr('#14161A'),
+      rows: [
+        Object.assign({ title: 'Pendaftaran lomba 17-an', slug: 'daftar-lomba', target: 'docs.google.com/forms/d/e/1FAIpQLSf.../viewform', clicks: '0', date: '13 Okt 2026' }, ok),
+        Object.assign({ title: 'Undangan arisan RT', slug: 'arisan-okt', target: 'drive.google.com/file/d/1aB.../view', clicks: '38', date: '9 Okt 2026' }, ok),
+        Object.assign({ title: 'Portofolio desain', slug: 'porto', target: 'www.behance.net/[NAMA-ANDA]', clicks: '214', date: '2 Okt 2026' }, ok),
+        Object.assign({ title: 'Promo jualan kue', slug: 'kue-lebaran', target: 'wa.me/62812xxxxxxx?text=Halo%20saya%20mau%20pesan', clicks: '97', date: '18 Sep 2026' }, exp),
+        Object.assign({ title: 'Survei lama', slug: 'survei-1', target: 'forms.gle/xxxxxxxx', clicks: '12', date: '1 Sep 2026' }, off)
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
