@@ -38,6 +38,7 @@ Tampilan netral, bersih, fokus pada link. Satu warna aksen biru, latar abu dingi
 
 | File | Layar |
 |---|---|
+| `Public.dc.html` | Beranda `/` tanpa login: kolom URL besar, kartu hasil + QR + link kelola, daftar link di perangkat ini |
 | `Main.dc.html` | Dashboard `/admin`: form buat, kartu hasil + QR, tabel daftar link |
 | `QR.dc.html` | QR generator `/admin/qr` (interaktif: warna, gaya, logo, keterangan) |
 | `Detail.dc.html` | Detail link: angka ringkas, grafik 30 hari, perangkat & sumber |
