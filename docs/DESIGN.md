@@ -1,4 +1,4 @@
-# Desain — Pendek.in
+# Desain — KlikAja
 
 Tampilan netral, bersih, fokus pada link. Satu warna aksen biru, latar abu dingin, kartu putih, dan satu kartu gelap untuk hasil shortlink supaya langsung terlihat.
 

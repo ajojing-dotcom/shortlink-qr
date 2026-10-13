@@ -1,4 +1,4 @@
-# Spesifikasi — Pendek.in
+# Spesifikasi — KlikAja
 
 Semua teks antarmuka berbahasa Indonesia.
 
