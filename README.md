@@ -1,11 +1,6 @@
 # Pendek.in — Shortlink & QR
 
-Aplikasi shortlink + generator kode QR yang bisa dipakai dengan dua cara:
-
-- **Tanpa login.** Siapa saja bisa langsung membuat shortlink dan QR di beranda. Link aktif 90 hari dan bisa dikelola lewat link kelola pribadi.
-- **Dengan login.** Pemilik masuk dengan kata sandi untuk membuat link permanen, mengganti tujuan link, melihat statistik lengkap, dan mengelola semua link, termasuk link tamu.
-
-Mode tamu bisa dimatikan dengan `PUBLIC_MODE=off`.
+Aplikasi shortlink + generator kode QR untuk pemakaian internal. Hanya pemilik yang bisa membuat dan mengelola link (login dengan satu kata sandi). Link pendek dan QR-nya bisa dibuka siapa saja, jadi aman dibagikan ke masyarakat.
 
 > Nama "Pendek.in" hanya nama sementara — nantinya cukup diganti di satu file konfigurasi (`config/site.ts`).
 
@@ -34,10 +29,6 @@ Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
 | `ADMIN_PASSWORD` | Kata sandi untuk masuk ke halaman admin |
 | `SESSION_SECRET` | Teks acak minimal 32 karakter untuk menandatangani cookie sesi |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Otomatis terisi saat Upstash Redis disambungkan di Vercel |
-| `PUBLIC_MODE` | `on` / `off`: mengizinkan pembuatan link tanpa login |
-| `GUEST_LINK_DAYS`, `GUEST_RATE_LIMIT`, `BLOCKED_DOMAINS` | Aturan link tamu (lihat `docs/SPEC.md` §1a) |
-| `GOOGLE_SAFE_BROWSING_KEY`, `TURNSTILE_SECRET` | Opsional, pengaman tambahan dari link jahat dan spam |
-
 ## Langkah berikutnya
 
 1. Tinjau desain di kanvas, beri catatan perubahan.
