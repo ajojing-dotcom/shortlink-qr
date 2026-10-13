@@ -1,31 +1,37 @@
 # Desain — KlikAja
 
-Tampilan netral, bersih, fokus pada link. Satu warna aksen biru, latar abu dingin, kartu putih, dan satu kartu gelap untuk hasil shortlink supaya langsung terlihat.
+Nuansa **Betawi**: merah ondel-ondel, hijau Betawi, dan kuning emas di atas latar krem, dengan hiasan **gigi balang** (deretan segitiga dari lisplang rumah Betawi) di bawah header dan di atas kartu hasil. Teks memakai logat Betawi yang ringan ("Pendekin, nyok!", "Waduh, linknya kagak ketemu!"), tapi label penting tetap jelas.
 
 ## Warna
 
-| Token | Terang | Gelap (usulan) | Dipakai untuk |
-|---|---|---|---|
-| `--bg` | `#F2F3F5` | `#0E1013` | Latar halaman |
-| `--surface` | `#FFFFFF` | `#171A1F` | Kartu, header |
-| `--ink` | `#14161A` | `#F2F3F5` | Teks utama |
-| `--muted` | `#5B6270` | `#9AA1AD` | Teks sekunder |
-| `--line` | `#E2E5EA` | `#2A2F37` | Garis kartu |
-| `--field` | `#D3D7DE` | `#3A3F49` | Garis input |
-| `--accent` | `#3B4CF5` | `#6B78FF` | Tombol utama, link, grafik |
-| `--accent-soft` | `#EEF0FF` | `#1E2250` | Menu aktif |
-| `--accent-ink` | `#2733C2` | `#AEB6FB` | Teks shortlink |
-| `--highlight` | `#D9F99D` | `#D9F99D` | Sorotan slug di kartu hasil |
-| `--ok` / `--ok-bg` | `#157F3D` / `#E6F4EA` | | Status Aktif |
-| `--warn` / `--warn-bg` | `#8A5A00` / `#FFF4E0` | | Status Kedaluwarsa |
-| `--danger` / `--danger-bg` | `#B42318` / `#FDECEA` | | Hapus, error |
-| `--hero` | `#14161A` | `#14161A` | Kartu hasil shortlink |
+| Token | Nilai | Dipakai untuk |
+|---|---|---|
+| `--bg` | `#FBF4E6` | Latar halaman (krem) |
+| `--surface` | `#FFFFFF` | Kartu, header |
+| `--ink` | `#2B1A12` | Teks utama (coklat tua) |
+| `--muted` | `#6E5A4C` | Teks sekunder |
+| `--line` | `#EADCC4` | Garis kartu |
+| `--field` | `#D9C6A5` | Garis input |
+| `--merah` (aksen) | `#B3202A` | Tombol utama, link, garis header, gigi balang |
+| `--merah-tua` | `#8E1B22` | Teks shortlink, hover |
+| `--merah-muda` | `#FBE3D6` | Menu aktif |
+| `--hijau` | `#0E6B47` | "aja" di logo, status Aktif |
+| `--hijau-tua` | `#0F3D2E` | Kartu hasil shortlink |
+| `--emas` | `#F2B705` | Sorotan slug, gigi balang di kartu hasil |
+| `--warn` / `--warn-bg` | `#8A5A00` / `#FFF4E0` | Status Kedaluwarsa |
+| `--danger` / `--danger-bg` | `#B42318` / `#FDECEA` | Hapus, error |
+
+Mode gelap (usulan): latar `#1A120D`, kartu `#24190F`, teks `#FBF4E6`, merah `#E0505A`, emas tetap.
 
 ## Huruf (Google Fonts)
 
-- **Bricolage Grotesque** 700 — judul (34 / 28 / 21 / 20 px, letter-spacing −0.02em)
-- **Instrument Sans** 400/500/600 — teks (15 px, label 14 px, kecil 13 px)
+- **Zilla Slab** 700 — judul (gaya papan nama/warung, tegas)
+- **Plus Jakarta Sans** 400–700 — teks (huruf yang memang dibuat untuk Jakarta)
 - **JetBrains Mono** 400/500 — shortlink, slug, kode warna
+
+## Hiasan gigi balang
+
+SVG pola segitiga 22×16 px dengan bulatan di ujung, diulang mendatar. Merah di bawah header (header punya garis bawah merah 4 px), emas di tepi atas kartu hasil. Hanya hiasan (`aria-hidden`).
 
 ## Bentuk & ukuran
 
