@@ -1,6 +1,11 @@
 # KlikAje — Shortlink & QR
 
-Aplikasi shortlink + generator kode QR untuk pemakaian internal. Hanya pemilik yang bisa membuat dan mengelola link (login dengan satu kata sandi). Link pendek dan QR-nya bisa dibuka siapa saja, jadi aman dibagikan ke masyarakat.
+Aplikasi shortlink + generator kode QR ala Betawi, dengan dua cara pakai:
+
+- **Tanpa login (tamu)**: siapa saja bisa bikin shortlink + QR di beranda. Link aktif 90 hari dan dikelola lewat *link kelola* pribadi. Ada batas pembuatan per IP, cek link jahat, dan tombol lapor.
+- **Dengan login (pemilik)**: link permanen, ganti tujuan, statistik lengkap, kelola semua link (termasuk link tamu) dan laporan.
+
+Mode tamu bisa dimatikan dengan `PUBLIC_MODE=off`.
 
 > Rencana domain: **klikaje.my.id** (contoh link: `klikaje.my.id/daftar-lomba`). Nama dan domain disimpan di satu file konfigurasi (`config/site.ts`) sehingga mudah diganti. Sebelum domain terpasang, aplikasi tetap jalan di alamat `*.vercel.app`.
 >
@@ -33,6 +38,9 @@ Versi pertama aplikasi sudah ada di repo ini (Next.js 15). Tinggal diimpor ke Ve
 | `ADMIN_PASSWORD` | Kata sandi untuk masuk ke halaman admin |
 | `SESSION_SECRET` | Teks acak minimal 32 karakter untuk menandatangani cookie sesi |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Otomatis terisi saat Upstash Redis disambungkan di Vercel |
+| `PUBLIC_MODE` | `on` (bawaan) / `off` — izinkan bikin link tanpa login |
+| `GUEST_LINK_DAYS`, `GUEST_RATE_LIMIT`, `BLOCKED_DOMAINS` | Aturan link tamu (opsional; bawaan 90 hari, 10/jam & 30/hari) |
+| `GOOGLE_SAFE_BROWSING_KEY` | Opsional, cek link jahat ke Google |
 
 ## Deploy pertama kali (sekali saja)
 

@@ -4,7 +4,19 @@ Semua teks antarmuka berbahasa Indonesia.
 
 ## 0. Cara pakai
 
-- **Pembuat link: hanya pemilik.** Semua fitur pengelolaan ada di balik login dengan satu kata sandi (`ADMIN_PASSWORD`). Tidak ada pendaftaran akun dan tidak ada mode tamu.
+- **Pembuat link: pemilik (login) dan tamu (tanpa login).** Pemilik login dengan satu kata sandi (`ADMIN_PASSWORD`). Tamu bikin link dari beranda `/` (bisa dimatikan `PUBLIC_MODE=off`).
+
+### Mode tamu
+| | Tamu | Pemilik |
+|---|---|---|
+| Bikin link | `/` | `/admin` (atau `/` saat login) |
+| Nama link sendiri | min. 4 karakter | min. 2 karakter |
+| Masa aktif | 90 hari (`GUEST_LINK_DAYS`) | permanen / pilih sendiri |
+| Ganti tujuan | tidak | ya |
+| Statistik | jumlah klik via `/kelola/<slug>?kunci=…` | lengkap |
+| Daftar link | localStorage browser | semua link, ada label "Tamu" |
+
+Pengaman: batas 10/jam & 30/hari per IP (`GUEST_RATE_LIMIT`); tolak IP mentah, layanan pemendek lain, `BLOCKED_DOMAINS`, dan (opsional) hasil Google Safe Browsing; kunci kelola acak disimpan sebagai hash SHA-256 dan hanya ditampilkan sekali; halaman `/lapor` → laporan muncul di atas dashboard pemilik dengan tombol "Matiin link".
 - **Pembuka link: siapa saja.** Shortlink dan QR dibagikan ke masyarakat umum, jadi redirect `/[slug]` dan halaman 404 terbuka untuk publik.
 
 ## 1. Rute

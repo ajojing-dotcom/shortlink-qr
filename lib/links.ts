@@ -12,6 +12,10 @@ export interface Link {
   lastClickedAt: number | null;
   active: boolean;
   expiresAt: number | null;
+  /** "admin" = dibuat pemilik, "guest" = dibuat tamu tanpa login */
+  owner: "admin" | "guest";
+  /** hash SHA-256 kunci kelola (khusus link tamu) */
+  manageKeyHash: string;
 }
 
 export class LinkError extends Error {
@@ -23,6 +27,7 @@ export class LinkError extends Error {
 export const RESERVED_SLUGS = new Set([
   "admin", "api", "login", "logout", "qr", "_next", "static", "public", "assets",
   "favicon.ico", "robots.txt", "sitemap.xml", "icon", "apple-icon", "manifest",
+  "kelola", "lapor", "brand", "opengraph-image", "twitter-image",
 ]);
 
 const SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,48}[a-z0-9])?$/;
@@ -112,6 +117,8 @@ function fromHash(h: Record<string, string>): Link {
     lastClickedAt: h.lastClickedAt ? Number(h.lastClickedAt) : null,
     active: h.active !== "0",
     expiresAt: h.expiresAt ? Number(h.expiresAt) : null,
+    owner: h.owner === "guest" ? "guest" : "admin",
+    manageKeyHash: h.manageKeyHash ?? "",
   };
 }
 
@@ -125,6 +132,8 @@ function toHash(l: Link): Record<string, string> {
     lastClickedAt: l.lastClickedAt ? String(l.lastClickedAt) : "",
     active: l.active ? "1" : "0",
     expiresAt: l.expiresAt ? String(l.expiresAt) : "",
+    owner: l.owner,
+    manageKeyHash: l.manageKeyHash,
   };
 }
 
@@ -167,6 +176,8 @@ export interface CreateInput {
   slug?: string;
   title?: string;
   expiresAt?: string | number | null;
+  owner?: "admin" | "guest";
+  manageKeyHash?: string;
 }
 
 export async function createLink(input: CreateInput, ownHosts: string[] = []): Promise<Link> {
@@ -184,6 +195,8 @@ export async function createLink(input: CreateInput, ownHosts: string[] = []): P
     slug, targetUrl, title,
     createdAt: Date.now(), clicks: 0, lastClickedAt: null, active: true,
     expiresAt: parseExpiry(input.expiresAt),
+    owner: input.owner ?? "admin",
+    manageKeyHash: input.manageKeyHash ?? "",
   };
   const store = await db();
   await store.hset(K.link(slug), toHash(link));
@@ -331,9 +344,9 @@ export async function getStats(slug: string): Promise<LinkStats> {
 export function toCsv(links: Link[], origin: string): string {
   const esc = (v: string) => `"${v.replace(/"/g, '""')}"`;
   const fmt = (t: number | null) => (t ? new Date(t).toISOString() : "");
-  const head = ["judul", "shortlink", "url_tujuan", "klik", "status", "dibuat", "terakhir_diklik", "kedaluwarsa"];
+  const head = ["judul", "shortlink", "url_tujuan", "klik", "status", "pembuat", "dibuat", "terakhir_diklik", "kedaluwarsa"];
   const rows = links.map((l) =>
-    [l.title, `${origin}/${l.slug}`, l.targetUrl, String(l.clicks), linkStatus(l), fmt(l.createdAt), fmt(l.lastClickedAt), fmt(l.expiresAt)]
+    [l.title, `${origin}/${l.slug}`, l.targetUrl, String(l.clicks), linkStatus(l), l.owner === "guest" ? "tamu" : "pemilik", fmt(l.createdAt), fmt(l.lastClickedAt), fmt(l.expiresAt)]
       .map(esc)
       .join(",")
   );

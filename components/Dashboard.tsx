@@ -27,7 +27,9 @@ async function api<T>(url: string, init?: RequestInit): Promise<T> {
   return body as T;
 }
 
-export default function Dashboard({ initial, origin }: { initial: LinkDTO[]; origin: string }) {
+export interface ReportDTO { id: string; slug: string; reason: string; note: string; at: number }
+
+export default function Dashboard({ initial, origin, reports = [] }: { initial: LinkDTO[]; origin: string; reports?: ReportDTO[] }) {
   const router = useRouter();
   const host = origin.replace(/^https?:\/\//, "");
   const [links, setLinks] = useState(initial);
@@ -47,6 +49,20 @@ export default function Dashboard({ initial, origin }: { initial: LinkDTO[]; ori
         <h1>Link aye</h1>
         <p>Bikin link panjang jadi pendek, bagiin, terus pantau udah berapa kali diklik.</p>
       </div>
+
+      {reports.length ? (
+        <Reports
+          reports={reports}
+          links={links}
+          host={host}
+          toast={toast}
+          onDisabled={(l) => {
+            setLinks((xs) => xs.map((x) => (x.slug === l.slug ? l : x)));
+            router.refresh();
+          }}
+          onDone={() => router.refresh()}
+        />
+      ) : null}
 
       <div className="grid-2">
         <CreateForm
@@ -279,6 +295,7 @@ function LinkList({ links, origin, onCopy, onChanged, toast }: {
                     <td>
                       <Link className="l-title" href={`/admin/link/${l.slug}`}>{l.title || l.slug}</Link>
                       <span className="l-slug">{host}/{l.slug}</span>
+                      {l.owner === "guest" ? <span className="badge tamu" style={{ marginLeft: 8, padding: "1px 8px", fontSize: 12 }}>Tamu</span> : null}
                     </td>
                     <td className="l-target" title={l.targetUrl}>{l.targetUrl.replace(/^https?:\/\//, "")}</td>
                     <td className="num">{l.clicks.toLocaleString("id-ID")}</td>
@@ -296,7 +313,7 @@ function LinkList({ links, origin, onCopy, onChanged, toast }: {
                 <div className="lcard-body">
                   <Link className="l-title" href={`/admin/link/${l.slug}`}>{l.title || l.slug}</Link>
                   <div className="l-slug">{host}/{l.slug}</div>
-                  <div className="muted" style={{ fontSize: 13 }}>{l.clicks.toLocaleString("id-ID")} klik · {STATUS_LABEL[l.status]}</div>
+                  <div className="muted" style={{ fontSize: 13 }}>{l.clicks.toLocaleString("id-ID")} klik · {STATUS_LABEL[l.status]}{l.owner === "guest" ? " · Tamu" : ""}</div>
                 </div>
                 <button type="button" className="icon-btn" aria-label={`Salin ${l.slug}`} onClick={() => onCopy(l.slug)}><IconCopy /></button>
                 <button type="button" className="icon-btn" aria-label={`QR ${l.slug}`} onClick={() => setQrFor(l)}><IconQr /></button>
@@ -434,5 +451,58 @@ function EditDialog({ link, host, onClose, onSaved, onDelete, onToggle }: {
         </div>
       </form>
     </dialog>
+  );
+}
+
+// ---------- laporan link berbahaya ----------
+
+const REASON_LABEL: Record<string, string> = {
+  penipuan: "Penipuan / phishing", judi: "Judi online", virus: "Virus / unduhan berbahaya", dewasa: "Konten dewasa", lainnya: "Lainnya",
+};
+
+function Reports({ reports, links, host, toast, onDisabled, onDone }: {
+  reports: ReportDTO[]; links: LinkDTO[]; host: string; toast: (m: string) => void; onDisabled: (l: LinkDTO) => void; onDone: () => void;
+}) {
+  const [hidden, setHidden] = useState<string[]>([]);
+  const shown = reports.filter((r) => !hidden.includes(r.id));
+  if (!shown.length) return null;
+  const close = async (id: string) => {
+    await api(`/api/admin/reports/${id}`, { method: "DELETE" }).catch(() => null);
+    setHidden((h) => [...h, id]);
+    onDone();
+  };
+  const disable = async (r: ReportDTO) => {
+    try {
+      const { link } = await api<{ link: LinkDTO }>(`/api/admin/links/${r.slug}`, { method: "PATCH", body: JSON.stringify({ active: false }) });
+      onDisabled(link);
+      await close(r.id);
+      toast("Link dimatiin & laporan ditutup.");
+    } catch (e) {
+      toast((e as Error).message);
+    }
+  };
+  return (
+    <section aria-labelledby="laporan" className="card reports">
+      <div className="list-head">
+        <h2 id="laporan" style={{ color: "var(--danger)" }}>Laporan link berbahaya <span className="muted" style={{ fontFamily: "var(--font-body)", fontSize: 14, fontWeight: 500 }}>· {shown.length}</span></h2>
+      </div>
+      {shown.map((r) => {
+        const l = links.find((x) => x.slug === r.slug);
+        return (
+          <div key={r.id} className="report-row">
+            <div style={{ flex: "1 1 260px", minWidth: 0 }}>
+              <Link className="l-slug" href={`/admin/link/${r.slug}`} style={{ fontSize: 14 }}>{host}/{r.slug}</Link>
+              {l?.owner === "guest" ? <span className="badge tamu" style={{ marginLeft: 8, padding: "1px 8px", fontSize: 12 }}>Tamu</span> : null}
+              <div className="muted l-target" style={{ fontSize: 13, maxWidth: "100%" }}>{l ? `→ ${l.targetUrl}` : "Link udah kagak ada"}</div>
+              <div style={{ fontSize: 13 }}><b>{REASON_LABEL[r.reason] ?? r.reason}</b>{r.note ? ` — ${r.note}` : ""} <span className="muted">· {fmtDate(r.at)}</span></div>
+            </div>
+            <div className="row">
+              {l?.active ? <button type="button" className="btn btn-sm btn-primary" onClick={() => disable(r)}>Matiin link</button> : null}
+              <button type="button" className="btn btn-sm" onClick={() => close(r.id)}>Tutup laporan</button>
+            </div>
+          </div>
+        );
+      })}
+    </section>
   );
 }

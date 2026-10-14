@@ -17,8 +17,10 @@ export function errorResponse(e: unknown) {
   return json({ error: "Ada yang error di server. Coba lagi sebentar." }, 500);
 }
 
-export type LinkDTO = Link & { status: ReturnType<typeof linkStatus> };
+export type LinkDTO = Omit<Link, "manageKeyHash"> & { status: ReturnType<typeof linkStatus> };
 
 export function dto(l: Link): LinkDTO {
-  return { ...l, status: linkStatus(l) };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { manageKeyHash, ...rest } = l;
+  return { ...rest, status: linkStatus(l) };
 }
