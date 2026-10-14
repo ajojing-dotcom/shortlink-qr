@@ -23,7 +23,10 @@ Pengaman: batas 10/jam & 30/hari per IP (`GUEST_RATE_LIMIT`); tolak IP mentah, l
 
 | Rute | Akses | Isi |
 |---|---|---|
-| `/` | Publik | Belum login → ke `/login`; sudah login → ke `/admin` |
+| `/` | Publik | Beranda tamu: form Pendekin, kartu hasil + QR + link kelola, daftar link di perangkat ini (`PUBLIC_MODE=off` → ke `/login` / `/admin`) |
+| `/qr` | Publik | QR generator |
+| `/kelola/[slug]?kunci=…` | Pemegang kunci | Jumlah klik & hapus link tamu |
+| `/lapor` | Publik | Laporkan link berbahaya |
 | `/[slug]` | Publik | Redirect 302 ke URL tujuan + catat klik |
 | `/login` | Publik | Form kata sandi |
 | `/admin` | Pemilik | Buat shortlink + daftar link |
