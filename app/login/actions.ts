@@ -22,6 +22,12 @@ export async function login(_prev: LoginState, form: FormData): Promise<LoginSta
   if (!process.env.ADMIN_PASSWORD) {
     return { error: "ADMIN_PASSWORD belum diatur di Vercel (Settings → Environment Variables)." };
   }
+  const secretLen = (process.env.SESSION_SECRET ?? "").length;
+  if (secretLen < 32) {
+    return {
+      error: `SESSION_SECRET di Vercel baru ${secretLen} karakter, minimal 32. Ganti dengan teks acak yang lebih panjang (Settings → Environment Variables), lalu Redeploy.`,
+    };
+  }
   let store: Store;
   try {
     store = await db();
