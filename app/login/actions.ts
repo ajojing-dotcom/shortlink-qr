@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { db } from "@/lib/db";
+import { db, type Store } from "@/lib/db";
 import { clientIp } from "@/lib/request";
 import { SESSION_COOKIE, SESSION_DAYS, createSessionToken, passwordMatches } from "@/lib/session";
 
@@ -22,7 +22,12 @@ export async function login(_prev: LoginState, form: FormData): Promise<LoginSta
   if (!process.env.ADMIN_PASSWORD) {
     return { error: "ADMIN_PASSWORD belum diatur di Vercel (Settings → Environment Variables)." };
   }
-  const store = await db();
+  let store: Store;
+  try {
+    store = await db();
+  } catch {
+    return { error: "Database belum disambungkan. Di Vercel: Storage → sambungkan Upstash for Redis, lalu Redeploy." };
+  }
   const key = `login:fail:${await clientIp()}`;
   const fails = Number(await store.get(key)) || 0;
   if (fails >= MAX_FAIL) {

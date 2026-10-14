@@ -8,7 +8,10 @@ export const dynamic = "force-dynamic";
 // Pintu publik: /<slug> → tujuan. Tidak perlu login.
 export default async function Go({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const link = await getLink(decodeURIComponent(slug));
+  const link = await getLink(decodeURIComponent(slug)).catch((e) => {
+    console.error("Gagal membaca link", e);
+    return null;
+  });
   if (!link || linkStatus(link) !== "aktif") notFound();
 
   const h = await headers();
