@@ -52,3 +52,8 @@ SVG pola segitiga 22×16 px dengan bulatan di ujung, diulang mendatar. Merah di 
 | `NotFound.dc.html` | 404 untuk link tidak ditemukan / nonaktif |
 
 Di HP: tabel daftar link berubah jadi kartu, menu atas jadi menu bawah (Link, QR).
+
+## Logo
+
+- `public/brand/klikaje-logo.webp` — logo lengkap (ondel-ondel + rantai + klikaje.my.id), dipakai di halaman login dan pratinjau link (`app/opengraph-image.jpg`).
+- `public/brand/mark.svg` / `app/icon.svg` — logo kecil: dua mata rantai merah-hijau bertaut dengan kilau emas, untuk header dan ikon tab browser (`app/apple-icon.png` untuk iPhone).

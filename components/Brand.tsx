@@ -1,5 +1,4 @@
 import { site } from "@/config/site";
-import { IconLink } from "./Icons";
 
 /** Hiasan gigi balang (lisplang rumah Betawi). */
 export function GigiBalang({ id, color = "var(--merah)", className = "gigi" }: { id: string; color?: string; className?: string }) {
@@ -16,11 +15,25 @@ export function GigiBalang({ id, color = "var(--merah)", className = "gigi" }: {
   );
 }
 
-export function BrandMark({ size = 32 }: { size?: number }) {
+/** Logo kecil: rantai merah-hijau (public/brand/mark.svg). */
+export function BrandMark({ size = 36 }: { size?: number }) {
   return (
-    <span className="brand-mark" style={{ width: size, height: size }}>
-      <span style={{ color: "#fff", display: "flex" }}><IconLink size={Math.round(size * 0.56)} /></span>
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src="/brand/mark.svg" alt="" width={size} height={size} style={{ display: "block", flex: "none" }} />
+  );
+}
+
+/** Logo lengkap: ondel-ondel + rantai + klikaje.my.id. */
+export function BrandHero({ width = 440 }: { width?: number }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brand/klikaje-logo.webp"
+      alt={`Logo ${site.name}: sepasang ondel-ondel mengapit rantai link merah-hijau dan tulisan ${site.domain}`}
+      width={width}
+      height={Math.round((width * 1024) / 1536)}
+      style={{ display: "block", width: "100%", maxWidth: width, height: "auto" }}
+    />
   );
 }
 

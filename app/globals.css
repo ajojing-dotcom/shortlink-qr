@@ -78,7 +78,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing:
 .topbar-in { max-width: 1200px; margin: 0 auto; padding: 14px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
 .brand:hover { color: var(--ink); }
-.brand-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--merah); display: flex; align-items: center; justify-content: center; }
 .brand-name { font-family: var(--font-display); font-weight: 700; font-size: 23px; letter-spacing: -0.01em; }
 .brand-name b { color: var(--hijau); font-weight: 700; }
 .nav { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
@@ -211,7 +210,7 @@ dialog::backdrop { background: rgba(43, 26, 18, .45); }
 /* ---------- login & 404 ---------- */
 .solo { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 16px; position: relative; }
 .solo-gigi { position: absolute; left: 0; right: 0; top: 0; border-top: 4px solid var(--merah); }
-.solo-card { width: 100%; max-width: 400px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+.solo-card { width: 100%; max-width: 420px; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 18px; }
 .nf { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 22px; max-width: 480px; }
 .nf-num { font-family: var(--font-display); font-weight: 700; font-size: 140px; line-height: 1; color: var(--line); }
 .nf-mark { position: absolute; width: 76px; height: 76px; border-radius: 20px; background: var(--merah); display: flex; align-items: center; justify-content: center; transform: rotate(-8deg); }
