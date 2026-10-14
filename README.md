@@ -36,3 +36,13 @@ Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
 1. Tinjau desain di kanvas, beri catatan perubahan.
 2. Bangun aplikasi dari repo ini (v0 / Claude) mengikuti `docs/SPEC.md` dan `docs/DESIGN.md`.
 3. Sambungkan Upstash Redis di Vercel, isi `ADMIN_PASSWORD` & `SESSION_SECRET`, lalu deploy.
+
+## Alur kerja
+
+```
+Claude  ──(commit & push otomatis)──▶  GitHub (repo ini)  ──(import)──▶  v0 / Vercel
+```
+
+- Semua perubahan (fitur, desain, perbaikan) dikerjakan di Claude. Claude yang commit dan push ke branch `main`.
+- v0 / Vercel hanya **mengimpor dari GitHub**. Jangan edit kode di v0, supaya repo tetap jadi satu-satunya sumber.
+- Vercel yang tersambung ke repo ini otomatis deploy ulang setiap ada push ke `main`.
