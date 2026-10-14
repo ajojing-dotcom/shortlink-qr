@@ -34,7 +34,7 @@ login:fail:{ip}    → hitungan gagal login (TTL 15 menit)
 
 ## 3. Redirect `/[slug]`
 
-- Ditemukan, aktif, belum kedaluwarsa → 302 ke `targetUrl`, tambah `clicks`, `lastClickedAt`, hitungan harian, perangkat (dari User-Agent), sumber (dari Referer; kosong = "Langsung / QR").
+- Ditemukan, aktif, belum kedaluwarsa → redirect sementara (307, setara 302 untuk browser) ke `targetUrl`, tambah `clicks`, `lastClickedAt`, hitungan harian, perangkat (dari User-Agent), sumber (dari Referer; kosong = "Langsung / QR").
 - Tidak ditemukan / nonaktif / kedaluwarsa → halaman 404: "Link tidak ditemukan atau sudah tidak aktif".
 - Pencatatan klik tidak boleh memperlambat redirect (pakai `waitUntil` / tanpa await).
 - Karena link dibuka masyarakat, ganti tujuan link (edit) langsung berlaku — QR yang sudah tercetak tetap dipakai.

@@ -8,7 +8,7 @@ Aplikasi shortlink + generator kode QR untuk pemakaian internal. Hanya pemilik y
 
 ## Status
 
-Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
+Versi pertama aplikasi sudah ada di repo ini (Next.js 15). Tinggal diimpor ke Vercel.
 
 | Isi repo | Keterangan |
 |---|---|
@@ -16,6 +16,8 @@ Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
 | [`docs/DESIGN.md`](docs/DESIGN.md) | Token desain (warna, huruf, ukuran) dan daftar layar |
 | [`design/`](design/) | File desain per layar (`.dc.html`) dari kanvas desain |
 | [`.env.example`](.env.example) | Variabel lingkungan yang dibutuhkan saat deploy |
+| `app/`, `components/`, `lib/` | Kode aplikasi |
+| [`config/site.ts`](config/site.ts) | Nama aplikasi & domain |
 
 ## Rencana teknologi
 
@@ -32,11 +34,23 @@ Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
 | `SESSION_SECRET` | Teks acak minimal 32 karakter untuk menandatangani cookie sesi |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Otomatis terisi saat Upstash Redis disambungkan di Vercel |
 
-## Langkah berikutnya
+## Deploy pertama kali (sekali saja)
 
-1. Tinjau desain di kanvas, beri catatan perubahan.
-2. Claude membangun aplikasi di repo ini mengikuti `docs/SPEC.md` dan `docs/DESIGN.md`.
-3. Impor repo ke Vercel, sambungkan Upstash Redis, isi `ADMIN_PASSWORD` & `SESSION_SECRET`, lalu deploy.
+1. **Vercel → Add New → Project → Import** repo `shortlink-qr` dari GitHub. Framework otomatis terdeteksi Next.js; klik **Deploy**.
+2. Di proyek Vercel: **Storage → Create / Connect → Upstash (Redis)** → sambungkan ke proyek. `KV_REST_API_URL` & `KV_REST_API_TOKEN` terisi otomatis.
+3. **Settings → Environment Variables**, tambah:
+   - `ADMIN_PASSWORD` — kata sandi login Abang
+   - `SESSION_SECRET` — teks acak ≥ 32 karakter (misal hasil `openssl rand -base64 32`, atau ketik acak panjang)
+4. **Deployments → Redeploy** supaya variabel baru terbaca.
+5. Buka alamat `….vercel.app` → login → bikin link pertama.
+6. (Nanti) **Settings → Domains → Add** `klikaje.my.id` dan atur DNS sesuai petunjuk Vercel.
+
+## Jalankan di komputer (opsional)
+
+```bash
+npm install
+npm run dev   # http://localhost:3000 — tanpa Redis memakai memori sementara
+```
 
 ## Alur kerja
 
