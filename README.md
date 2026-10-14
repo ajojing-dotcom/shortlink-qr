@@ -13,7 +13,7 @@ Mode tamu bisa dimatikan dengan `PUBLIC_MODE=off`.
 
 ## Status
 
-Versi pertama aplikasi sudah ada di repo ini (Next.js 15). Tinggal diimpor ke Vercel.
+Aplikasi sudah jalan di Vercel (proyek **klikaje** → klikaje.vercel.app). Repo ini public supaya deploy otomatis jalan di paket Hobby Vercel; semua rahasia (kata sandi, kunci database) disimpan di Environment Variables Vercel, bukan di repo.
 
 | Isi repo | Keterangan |
 |---|---|
