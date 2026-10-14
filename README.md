@@ -31,11 +31,12 @@ Tahap **desain & spesifikasi**. Kode aplikasi belum dibuat.
 | `ADMIN_PASSWORD` | Kata sandi untuk masuk ke halaman admin |
 | `SESSION_SECRET` | Teks acak minimal 32 karakter untuk menandatangani cookie sesi |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | Otomatis terisi saat Upstash Redis disambungkan di Vercel |
+
 ## Langkah berikutnya
 
 1. Tinjau desain di kanvas, beri catatan perubahan.
-2. Bangun aplikasi dari repo ini (v0 / Claude) mengikuti `docs/SPEC.md` dan `docs/DESIGN.md`.
-3. Sambungkan Upstash Redis di Vercel, isi `ADMIN_PASSWORD` & `SESSION_SECRET`, lalu deploy.
+2. Claude membangun aplikasi di repo ini mengikuti `docs/SPEC.md` dan `docs/DESIGN.md`.
+3. Impor repo ke Vercel, sambungkan Upstash Redis, isi `ADMIN_PASSWORD` & `SESSION_SECRET`, lalu deploy.
 
 ## Alur kerja
 
