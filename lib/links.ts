@@ -147,7 +147,7 @@ export async function getLink(slug: string): Promise<Link | null> {
   const s = normalizeSlug(slug);
   if (!s || s.length > 50) return null;
   const h = await (await db()).hgetall(K.link(s));
-  return h ? fromHash(h) : null;
+  return h?.slug && h.targetUrl ? fromHash(h) : null;
 }
 
 export async function isSlugTaken(slug: string): Promise<boolean> {
@@ -158,7 +158,7 @@ export async function listLinks(): Promise<Link[]> {
   const store = await db();
   const slugs = await store.zrevrange(K.list, 0, -1);
   const rows = await Promise.all(slugs.map((s) => store.hgetall(K.link(s))));
-  return rows.filter((h): h is Record<string, string> => !!h).map(fromHash);
+  return rows.filter((h): h is Record<string, string> => !!h?.slug && !!h.targetUrl).map(fromHash);
 }
 
 async function randomFreeSlug(): Promise<string> {

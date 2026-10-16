@@ -22,15 +22,27 @@ function redisEnv() {
   return url && token ? { url, token } : null;
 }
 
+/** Ubah jawaban HGETALL (array datar atau objek) jadi objek string. */
+export function pairsToRecord(v: unknown): Record<string, string> | null {
+  if (!v) return null;
+  const out: Record<string, string> = {};
+  if (Array.isArray(v)) {
+    for (let i = 0; i + 1 < v.length; i += 2) out[String(v[i])] = v[i + 1] == null ? "" : String(v[i + 1]);
+  } else if (typeof v === "object") {
+    for (const [k, x] of Object.entries(v as Record<string, unknown>)) out[k] = x == null ? "" : String(x);
+  }
+  return Object.keys(out).length ? out : null;
+}
+
 async function upstashStore(url: string, token: string): Promise<Store> {
   const { Redis } = await import("@upstash/redis");
   const r = new Redis({ url, token, automaticDeserialization: false });
   const str = (v: unknown) => (v === null || v === undefined ? null : String(v));
   return {
     async hgetall(key) {
-      const v = (await r.hgetall(key)) as Record<string, unknown> | null;
-      if (!v || Object.keys(v).length === 0) return null;
-      return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, String(x)]));
+      // Tanpa deserialisasi otomatis, Upstash mengembalikan array datar [kunci, nilai, kunci, nilai, ...].
+      const v = (await r.hgetall(key)) as unknown;
+      return pairsToRecord(v);
     },
     hset: (key, values) => r.hset(key, values),
     hincrby: (key, field, by) => r.hincrby(key, field, by),
